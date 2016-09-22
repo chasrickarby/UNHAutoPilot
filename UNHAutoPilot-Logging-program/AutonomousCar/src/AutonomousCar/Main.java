@@ -38,12 +38,8 @@ public class Main {
         Timer t100 = new Timer(100);
         Timer t1000 = new Timer(1000);
 		Timer t10 = new Timer (10);
-		PrintWriter writer = new PrintWriter("C:\Users\Project54\Desktop\log.txt", "UTF-8");
-		
-		if (!log.exists())
-		{
-			log.createNewFile();
-		}
+		PrintWriter writer = new PrintWriter("C:\\Users\\Project54\\Desktop\\log.txt", "UTF-8");
+
         // the main control loop
         while (true) {
 
@@ -74,7 +70,7 @@ public class Main {
             }
 
             // compute next control actions based on feedback
-            //autoControl.doControl();
+            autoControl.doControl();
 
             // display controller state 10 times per second
             if (t100.timeout()) {
@@ -82,10 +78,11 @@ public class Main {
             }
 			if(t10.timeout())
 			{
-				List<string> loginfo = autoControl.getValues();
-				for(string info in loginfo)
+				String loginfo[] = autoControl.getValues();
+				for(int i = 0; i < loginfo.length; i++)
 				{
-					writer.println(info);
+					writer.print(loginfo[i] + " ");
+                    writer.println();
 				}
 			}
 

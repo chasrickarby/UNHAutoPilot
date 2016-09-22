@@ -94,7 +94,7 @@ public class AutonomousControl {
         speedmph = velocity.mph();
         inlane = laneposition.inlane();
         laneposmeters = laneposition.value();
-
+        /*
         // do control if in lane
         if (inlane) {
             // do steering control (if moving)
@@ -119,6 +119,7 @@ public class AutonomousControl {
                 autopilot = false;
             }
         }
+        */
     }
 
     /*******************************************
@@ -145,12 +146,12 @@ public class AutonomousControl {
         }
     }
 	
-	public List<string> getValues()
+	public String[] getValues()
 	{
-		List<string> logs = new List<string>();
-		logs.add(Double.toString(speedmph));
-		logs.add(Double.toString(laneposmeters));
-		logs.add(Double.toString(steerangle));
+		String logs[] = new String[3];
+		logs[0] = (Double.toString(speedmph));
+		logs[1] = (Double.toString(laneposmeters));
+		logs[2] = (Double.toString(steerangle));
 		return logs;
 	}
 }
