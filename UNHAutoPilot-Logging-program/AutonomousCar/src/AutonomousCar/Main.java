@@ -37,8 +37,6 @@ public class Main {
         // start timers for pacing things
         Timer t100 = new Timer(100);
         Timer t1000 = new Timer(1000);
-		Timer t10 = new Timer (10);
-		PrintWriter writer = new PrintWriter("C:\\Users\\Project54\\Desktop\\log.txt", "UTF-8");
 
         // the main control loop
         while (true) {
@@ -46,7 +44,7 @@ public class Main {
             // update the periodic timers once each cycle
             t100.update();
             t1000.update();
-			t10.update();
+
             // get feedback for control
             autoControl.getFeedback();
 
@@ -76,15 +74,6 @@ public class Main {
             if (t100.timeout()) {
                 autoControl.doDisplay();
             }
-			if(t10.timeout())
-			{
-				String loginfo[] = autoControl.getValues();
-				for(int i = 0; i < loginfo.length; i++)
-				{
-					writer.print(loginfo[i] + " ");
-                    writer.println();
-				}
-			}
 
         }
     }
