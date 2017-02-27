@@ -37,20 +37,16 @@ public class Main {
         // start timers for pacing things
         Timer t100 = new Timer(100);
         Timer t1000 = new Timer(1000);
-		Timer t10 = new Timer (10);
-		PrintWriter writer = new PrintWriter("C:\Users\Project54\Desktop\log.txt", "UTF-8");
-		
-		if (!log.exists())
-		{
-			log.createNewFile();
-		}
+		Timer t1 = new Timer (1);
+		PrintWriter writer = new PrintWriter("C:\\Users\\Project54\\Desktop\\log.txt", "UTF-8");
+
         // the main control loop
         while (true) {
 
             // update the periodic timers once each cycle
             t100.update();
             t1000.update();
-			t10.update();
+			t1.update();
             // get feedback for control
             autoControl.getFeedback();
 
@@ -74,18 +70,19 @@ public class Main {
             }
 
             // compute next control actions based on feedback
-            //autoControl.doControl();
+            autoControl.doControl();
 
             // display controller state 10 times per second
             if (t100.timeout()) {
                 autoControl.doDisplay();
             }
-			if(t10.timeout())
+			if(t1.timeout())
 			{
-				List<string> loginfo = autoControl.getValues();
-				for(string info in loginfo)
+				String loginfo[] = autoControl.getValues();
+				for(int i = 0; i < loginfo.length; i++)
 				{
-					writer.println(info);
+					writer.print(loginfo[i] + " ");
+                    writer.println();
 				}
 			}
 
